@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="<%= assetPath('css/user_signin.css') %>">
+
+<div id="bodymain">
+
+
+    <div>
+        <span id="logo" onclick="location.href='/'" style="cursor: pointer;">
+            CODEIAL
+        </span>
+        <br>
+        <span id="caption">
+            Codeial helps you connect and share with the people in your life.
+        </span>
+    </div>
+
+    <div id="inputbox">
+        <form action="/users/signinform" method="POST">
+            <input id="email" type="email" placeholder="Email address or phone number" name="email" required>
+            <input id="password" type="password" placeholder="Password" name="password" required>
+            <button id="submit" type="submit">Log In</button>
+            <center><span id="forgotpassword">Forgotten password?</span></center>
+        </form>
+        <button id="googlesignin" onclick="location.href='/users/auth/google'">
+            Sign in with Google
+        </button>
+        <button id="newaccount" onclick="location.href='/users/signup'">
+            Create New Account
+        </button>
+    </div>
+</div>
+
+<script src="<%= assetPath('js/forgotpassword.js') %>"></script>

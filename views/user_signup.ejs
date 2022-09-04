@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="<%= assetPath('css/user_signup.css') %>">
+
+<div id="bodymain">
+
+
+    <div>
+        <span id="logo" onclick="location.href='/'" style="cursor: pointer;">
+            CODEIAL
+        </span>
+        <br>
+        <span id="caption">
+            Codeial helps you connect and share with the people in your life.
+        </span>
+    </div>
+
+    <div id="inputbox">
+        <form action="/users/signupform" method="POST" id="signupform">
+            <input type="hidden" name="avatar" value="<%= defaultAvatarPath %>">
+            <input id="email" type="email" placeholder="Email address or phone number" name="email" required>
+            <input id="name" type="name" placeholder="Full Name" name="name" required>
+            <input id="password" type="password" placeholder="Password" name="password" required>
+            <input id="password" type="password" placeholder="Confirm Password" name="cpassword" required>
+            <button id="submit" type="submit">Create Account</button>
+        </form>
+        <button id="login" onclick="location.href='/users/signin'">
+            Log In
+        </button>
+    </div>
+</div>
+</div>

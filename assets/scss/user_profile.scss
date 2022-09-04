@@ -1,0 +1,74 @@
+#profile {
+    display: flex;
+}
+#section1 {
+    position: absolute;
+    height: calc(100% - 50px);
+    width: 40%;
+    h1 {
+        margin-bottom: 0;
+    }
+    z-index: 1;
+}
+#section2 {
+    position: absolute;
+    right: 0;
+    height: calc(100% - 50px);
+    width: 100%;
+    overflow-y: scroll;
+}
+#profile-user-avatar {
+    position: relative;
+    width: 60%;
+    height: calc((40vw) * 0.6);
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+#updateprof {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    border: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--themeColor);
+    border-radius: 10px;
+    outline: 0;
+    cursor: pointer;
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+    user-select: none;
+    &:hover {
+        background-color: var(--themeColorHover);
+    }
+}
+#add-remove-friend {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    border: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--themeColor);
+    border-radius: 10px;
+    outline: 0;
+    cursor: pointer;
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+    user-select: none;
+    &:hover {
+        background-color: var(--themeColorHover);
+    }
+}
+
+#post-form {
+    left: 65%;
+    margin-bottom: 20px;
+}
+.main-post-container {
+    left: 65%;
+}

@@ -1,0 +1,112 @@
+<li class="main-post-container" id="post-<%= i.id %>">
+    <div id="post-header">
+        <div id="post-header-sub1">
+            <img id="post-avatar" src="<%= i.user.avatar %>" alt="<%= i.user.name %>" style="cursor: pointer;"
+                onclick="location.href='/users/profile/<%= i.user.id %>'">
+
+            <a href="/users/profile/<%= i.user.id %>" id="post-user-name">
+                <%= i.user.name %>
+            </a>
+            <span id="post-time">
+                <%= convertDate(i.createdAt) %>
+                    <i class="fas fa-cog"></i>
+            </span>
+            <div id="post-details">
+                <% if(locals.user && locals.user.id==i.user.id) { %>
+
+                    <a class="delete-post-button" href="/posts/destroy/<%=i.id%>"><i class="fas fa-trash-alt"></i></a>
+
+                    <% }else{ %>
+                        <img style="width: 15px;position: absolute;top:50%;left:50%;transform:translate(-50%,-50%);"
+                            src="https://img.icons8.com/fluent-systems-filled/48/000000/ellipsis.png" />
+                        <% } %>
+            </div>
+        </div>
+        <div id="post-header-sub2">
+            <span id="post-content">
+                <%= i.content %>
+            </span>
+        </div>
+    </div>
+    <div id="post-image" style="display: flex;justify-content: center;background-color: black;position: relative;">
+        <img src="<%= i.postImage %>" alt="<%= i.user.name %>" style="position: relative;max-height: 670px;max-width: 100%;">
+    </div>
+    <div id="post-comment-container">
+
+        <div id="post-comments-list">
+            <div id="post-comment-header1">
+                <span id="commentcount">
+                    <span id="comment-count-<%= i._id %>">
+                        <%= i.comments.length %>
+                    </span> comments
+                </span>
+                <span id="likecount">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span id="like-count-<%= i._id %>">
+                        <%= i.like.length %>
+                    </span> likes
+                </span>
+            </div>
+            <% if(locals.user){ %>
+                <div id="post-comment-header2">
+                    <form action="/likes/create" method="POST" id="post-like-form">
+                        <% let flag=false; %>
+                            <% for(let eachlike of i.like){ %>
+                                <% if(eachlike.user==locals.user.id){ %>
+                                    <% flag=true; %>
+                                        <% break; %>
+                                            <% } %>
+                                                <% } %>
+                                                    <% if(flag){ %>
+                                                        <input type="checkbox" name="like"
+                                                            id="post-like-checkbox-<%= i._id %>" style="display: none;"
+                                                            checked>
+                                                        <% }else{ %>
+                                                            <input type="checkbox" name="like"
+                                                                id="post-like-checkbox-<%= i._id %>"
+                                                                style="display: none;">
+                                                            <% } %>
+                                                                <input type="hidden" name="refid" value="<%= i._id %>">
+                                                                <input type="hidden" name="reftype" value="Post">
+                                                                <label for="post-like-checkbox-<%= i._id %>">
+                                                                    <div id="post-like-button">
+
+                                                                        <% if(flag){ %>
+                                                                            <i class="fas fa-thumbs-up"
+                                                                                style="color: #0571ed;"><span>Like</span></i>
+                                                                            <% }else{ %>
+                                                                                <i
+                                                                                    class="fas fa-thumbs-up"><span>Like</span></i>
+                                                                                <% } %>
+                                                                    </div>
+                                                                </label>
+                    </form>
+                    <div id="post-comment-button">
+                        <label for="comment-content-<%=i._id%>">
+                            <i class="fas fa-comment"><span>Comment</span></i>
+                        </label>
+                    </div>
+                </div>
+                <% } %>
+
+                    <ul id="post-comment-<%= i._id %>">
+                        <%- include('_comment.ejs',{i:i}); %>
+                    </ul>
+        </div>
+        <% if(locals.user){ %>
+            <div id="post-comment-form">
+                <img src="<%= locals.user.avatar %>" alt="">
+                <form action="/comments/create" id="new-comment-form" method="POST">
+                    <input id="comment-content-<%=i._id%>" class="comment-content" name="content" type="text"
+                        placeholder="Write a comment..." autocomplete="off" required></input>
+                    <input type="hidden" name="post" value="<%=i._id%>">
+                    <input id="submit-<%=i._id%>" class="submit" type="submit" value="" style="display: none;">
+                    <label for="submit-<%=i._id%>">
+                        <i id="submit" class="fas fa-paper-plane"></i>
+                    </label>
+                </form>
+            </div>
+            <% } %>
+    </div>
+
+</li>

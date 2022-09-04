@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="<%= assetPath('css/posts.css') %>">
+<link rel="stylesheet" href="<%= assetPath('css/user_profile.css') %>">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<div id="profile">
+    <div id="section1">
+        <img id="profile-user-avatar" src="<%= profile_user.avatar %>" alt="<%= user.name %>">
+        <br>
+        <center>
+            <h1>
+                <%= profile_user.name %>
+            </h1>
+        </center>
+        <br>
+        <% if(user.id==profile_user.id){ %>
+            <button id="updateprof" onclick="location.href='/users/updateform/<%= profile_user.id %>'">Update
+                Profile</button>
+    </div>
+    <div id="section2">
+        <div id="post-form">
+            <div id="sub1">
+                <img src="<%= locals.user.avatar %>" alt="">
+                <form action="/posts/create" id="new-post-form" method="POST" enctype="multipart/form-data">
+                    <input type="text" autocomplete="off" id="post-form-content" name="content"
+                        placeholder="What's on your mind, <%= locals.user.name %>?" required></input>
+                    <input id="post-form-image" type="file" name="postImage" accept="image/jpg, image/jpeg, image/png"
+                        value="Upload Picture" style="display: none;" required>
+                    <input id="submit" class="submit" type="submit" value="" style="display: none;">
+                </form>
+            </div>
+            <div id="sub2">
+                <label id="label1" for="post-form-image">
+                    <div id="post-form-image-container">
+                        <i class="far fa-image"></i>
+                    </div>
+                </label>
+                <label id="label2" for="submit">
+                    <div id="post-form-submit">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </label>
+            </div>
+
+        </div>
+        <% }else{ %>
+            <% if(isFriend==true){ %>
+                <button id="add-remove-friend" style="background-color: #f02849;" value="<%= profile_user.id %>">Remove
+                    Friend</button>
+                <% }else{ %>
+                    <button id="add-remove-friend" value="<%= profile_user.id %>">Add Friend</button>
+                    <% } %>
+    </div>
+    <div id="section2">
+
+        <% } %>
+            <div id="post-list-container">
+                <ul id="post-container-ul">
+
+                    <% function convertDate(fulldate) { 
+                        let b=new Date(fulldate);
+                        b.setHours(b.getHours()+5);
+                        b.setMinutes(b.getMinutes()+30);
+                        let time=b.toString().slice(0,21).split("").reverse().join("").slice(0,5).split("").reverse().join("");
+                        let month=['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov','Dec']; let
+                        a=b.getDate()+' '+month[b.getMonth()]+' '+' at '+time;
+                    return a;
+                    } %>
+                <% for(let i of posts){ %>
+                    <%- include('_post',{i:i,convertDate:convertDate}); %>
+                        <% } %>
+                </ul>
+            </div>
+    </div>
+</div>
+
+
+<script src="<%= assetPath('js/home_likes.js') %>"></script>
+<script src="<%= assetPath('js/home_comments.js') %>"></script>
+<script src="<%= assetPath('js/home_posts.js') %>"></script>
+<script src="<%= assetPath('js/add_friend.js') %>"></script>

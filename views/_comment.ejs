@@ -1,0 +1,70 @@
+<% for(let j of i.comments){ %>
+    <li id="comment-<%= j.id %>">
+        <img src="<%= j.user.avatar %>" alt="">
+        <div id="commentcontent">
+
+            <div id="commentbox">
+                <span id="span1">
+                    <%= j.user.name %>
+                </span>
+
+                <br>
+                <span id="span2">
+                    <%= j.content %>
+                </span>
+                <div id="countlikes">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span id="comment-like-count-<%= j._id %>">
+                        <%= j.like.length %>
+                    </span>
+                </div>
+            </div>
+            <div id="span3">
+                <% if(locals.user){ %>
+                    <form action="/likes/create" method="POST" id="comment-like-form">
+                        <% let flag=false; %>
+                            <% for(let eachlike of j.like){ %>
+                                <% if(eachlike.user==locals.user.id){ %>
+                                    <% flag=true; %>
+                                        <% break; %>
+                                            <% } %>
+                                                <% } %>
+                                                    <% if(flag){ %>
+                                                        <input type="checkbox" name="like"
+                                                            id="comment-like-checkbox-<%= j._id %>"
+                                                            style="display: none;" checked>
+                                                        <% }else{ %>
+                                                            <input type="checkbox" name="like"
+                                                                id="comment-like-checkbox-<%= j._id %>"
+                                                                style="display: none;">
+                                                            <% } %>
+                                                                <input type="hidden" name="refid" value="<%= j._id %>">
+                                                                <input type="hidden" name="reftype" value="Comment">
+                                                                <label for="comment-like-checkbox-<%= j._id %>">
+
+                                                                    <% if(flag){ %>
+                                                                        <span id="comment-like-button"
+                                                                            style="color: #0571ed;">Like</span>
+                                                                        <% }else{ %>
+                                                                            <span id="comment-like-button">Like</span>
+                                                                            <% } %>
+                                                                </label>
+                    </form>
+                    <% } %>
+                        <span id="commenttime">
+                            <%= convertDate(j.createdAt) %>
+                        </span>
+
+
+                        <% if(locals.user ) { %>
+                            <% if(locals.user.id==j.user.id || locals.user.id==i.user.id) { %>
+
+                                <a class="delete-comment-button" href="/comments/destroy/<%=j.id%>"><i
+                                        class="fas fa-trash-alt"></i></a>
+                                <% } %>
+                                    <% } %>
+            </div>
+
+        </div>
+    </li>
+    <% } %>

@@ -1,0 +1,20 @@
+:root {
+    --themeColor: #0571ed;
+    --themeColorHover: #005ac2;
+}
+
+body {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+    background-color: #f0f2f5;
+    user-select: none;
+    #layout-main {
+        height: calc(100vh - 50px);
+        width: 100%;
+        background-color: #f0f2f5;
+    }
+}

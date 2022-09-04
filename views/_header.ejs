@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="<%= assetPath('css/header.css') %>">
+<% if(!locals.user){ %>
+    <link rel="stylesheet" href="https://yubo.yugasa.org/assets/inshita_bamba.bot.css">
+    <script src="https://yubo.yugasa.org/assets/inshita_bamba.bot.js"></script>
+    <style>
+        .hy-icon{
+            height: 34px;
+        }
+    </style>
+    <% } %>
+        <div id="body">
+            <% if(locals.user){ %>
+                <div id="searchbar">
+                    <i id="arrowleft" class="fas fa-arrow-left"></i>
+                    <div id="searchbox">
+                        <i class="fas fa-search"></i>
+                        <input id="headersearch" type="text" placeholder="Search Codeial">
+                    </div>
+                    <div id="searchoptions">
+                    </div>
+                </div>
+                <% } %>
+                    <div id="header">
+
+                        <img id="logo" src="<%= assetPath('images/logo.png') %>" onclick="location.href='/'">
+
+                        <div id="hbutton">
+                            <% if(locals.user){ %>
+
+                                <div id="headerbutton" onclick="location.href='/users/profile/<%= user.id %>'">
+                                    <%= user.name %>
+                                </div>
+                                <i onclick="location.href='/users/signout'" class="fas fa-sign-out-alt"></i>
+
+                                <% }else{ %>
+                                    <div id="headerbutton" onclick="location.href='/users/signin'">Log In</div>
+
+                                    <% } %>
+                        </div>
+                    </div>
+        </div>
+        <script src="<%= assetPath('js/user_search.js') %>"></script>

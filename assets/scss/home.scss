@@ -1,0 +1,183 @@
+#home-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #f0f2f5;
+    overflow: hidden;
+    z-index: 0;
+    #section1-general {
+        z-index: 1;
+        position: absolute;
+        height: 100%;
+        width: 23%;
+        overflow-y: scroll;
+        margin: 0;
+        
+
+        #sec3-each-user {
+            position: relative;
+            width: calc(100% - 10px);
+            height: 60px;
+            border-radius: 15px;
+            cursor: pointer;
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+            }
+            #a {
+                text-decoration: none;
+                color: black;
+                position: absolute;
+                top: 50%;
+                left: 60px;
+                transform: translateY(-50%);
+            }
+            transition: background-color 200ms;
+            &:hover {
+                background-color: rgb(228, 230, 233);
+            }
+        }
+
+        //for scrollbar**************************
+        transition: background-color 0.15s;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0);
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(188, 192, 196);
+            }
+        }
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            display: none;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: inherit;
+        }
+        //for scrollbar**************************
+    }
+    #section1-general-content {
+        position: absolute;
+        min-height: calc(100% - 10px);
+        width: calc(100% - 20px);
+        padding: 10px;
+        padding-bottom: 0px;
+        background-color: #f0f2f5;
+        word-wrap: break-word;
+    }
+
+    #section2-feed-posts {
+        position: absolute;
+        overflow-y: scroll;
+        height: 100%;
+        width: 100vw;
+    }
+
+    #section3-user-friends {
+        position: absolute;
+        right: 20px;
+        height: calc(100% - 20px);
+        padding: 10px;
+        width: 23%;
+
+        #sec3-each-user {
+            position: relative;
+            width: calc(100% - 10px);
+            height: 60px;
+            border-radius: 15px;
+            cursor: pointer;
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                transform: translateY(-50%);
+            }
+            #a {
+                text-decoration: none;
+                color: black;
+                position: absolute;
+                top: 50%;
+                left: 60px;
+                transform: translateY(-50%);
+            }
+            transition: background-color 200ms;
+            &:hover {
+                background-color: rgb(228, 230, 233);
+            }
+        }
+    }
+    #section3-user-friends-outer {
+        position: absolute;
+        overflow-y: scroll;
+        height: calc(100% - 20px);
+        width: calc(100% - 10px);
+        background-color: #f0f2f5;
+        word-wrap: break-word;
+
+        //for scrollbar**************************
+        transition: background-color 0.15s;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0);
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(188, 192, 196);
+            }
+        }
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            display: none;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: inherit;
+        }
+        //for scrollbar**************************
+    }
+    #section1-all-users-outer {
+        position: absolute;
+        overflow-y: scroll;
+        height: calc(100% - 20px);
+        width: calc(100% - 10px);
+        background-color: #f0f2f5;
+        word-wrap: break-word;
+
+        //for scrollbar**************************
+        transition: background-color 0.15s;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0);
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(188, 192, 196);
+            }
+        }
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            display: none;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: inherit;
+        }
+        //for scrollbar**************************
+    }
+}
